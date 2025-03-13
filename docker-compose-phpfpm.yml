@@ -2,9 +2,7 @@ version: '1.0'
 
 services:
   web:
-    image: ngochoaitn/gpm-login-private-server:php8_1_apache
-    ports:
-      - "${WEB_PORT:-80}:80"
+    image: ngochoaitn/gpm-login-private-server:php_fpm
     depends_on:
       - mysql
     networks:
@@ -15,7 +13,19 @@ services:
       - ./apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
       - ./php/php_large_file_upload.ini:/usr/local/etc/php/conf.d/php_large_file_upload.ini
     restart: unless-stopped
-
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+        - "${WEB_PORT:-80}:80"
+    volumes:
+        - '.:/var/www/html'
+        - './nginx:/etc/nginx/conf.d'
+        - 'web_storage:/var/www/html/storage'
+    networks:
+        - sail
+    depends_on:
+        - web
   mysql:
     image: 'mysql/mysql-server:8.0'
     # ports:

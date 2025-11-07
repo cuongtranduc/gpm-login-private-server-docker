@@ -78,7 +78,7 @@ docker-compose up -d
 ```
 
 ## Sao lưu, khôi phục
-Chú ý: Nếu máy mới đang có private server cầu sao lưu ra trước khi khôi phục
+Chú ý: Nếu máy mới đang cài private server, cần tiến hành sao lưu ra trước khi khôi phục
 
 ### Windows
 - Bước 1: Tại máy mới: Tiến hành cài private server

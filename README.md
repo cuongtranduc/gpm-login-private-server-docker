@@ -78,6 +78,33 @@ docker-compose pull
 docker-compose up -d
 ```
 
+## Backup, restore
+Note: If the new machine is a private server, make sure to back up before restoring.
+
+### Windows
+- Step 1: On the new machine: Install the private server.
+- Step 2: On the machine containing the data:
++ Run the export-windows.bat file
++ Copy file "db_backup.sql" and folder "storage_backup" to the private server directory of the new machine.
+- Step 3: On the new machine, run the file restore-windows.bat
+
+### Ubuntu
+-Step 1: On the new machine: Install the private server.
+- Bước 2: Step 2: On the machine containing the data:
++ Run the following command:
+```
+cd <thư mục private server>
+chmod +x export-ubuntu-22-04.sh
+sudo ./export-ubuntu-22-04.sh
+
+```
++ Copy the file "gpm_prv_sv_backup.zip" to the private server directory of the new machine.
+- Step 3: On the new machine, run the following command:
+```
+chmod +x restore-ubuntu-22-04.sh
+sudo ./restore-ubuntu-22-04.sh
+```
+
 ## Fix "Permission Denied" Error on Web
 Open the terminal and run the following command (you may need to use sudo). Replace `gpm-login-private-server-docker` with the current folder name.
 ```

@@ -77,6 +77,34 @@ docker-compose pull
 docker-compose up -d
 ```
 
+## Sao lưu, khôi phục
+Chú ý: Nếu máy mới đang có private server cầu sao lưu ra trước khi khôi phục
+
+### Windows
+- Bước 1: Tại máy mới: Tiến hành cài private server
+- Bước 2: Tại máy chứa dữ liệu:
++ Chạy file export-windows.bat
++ Copy file "db_backup.sql" và thư mục "storage_backup" sang thư mục private server của máy mới
+- Bước 3: Tại máy mới chạy file restore-windows.bat
+
+### Ubuntu
+- Bước 1: Tại máy mới: Tiến hành cài private server
+- Bước 2: Tại máy chứa dữ liệu:
++ Chạy lệnh
+```
+cd <thư mục private server>
+chmod +x export-ubuntu-22-04.sh
+sudo ./export-ubuntu-22-04.sh
+
+```
++ Copy file "gpm_prv_sv_backup.zip" sang thư mục private server của máy mới
+- Bước 3: Tại máy mới chạy lệnh
+```
+chmod +x restore-ubuntu-22-04.sh
+sudo ./restore-ubuntu-22-04.sh
+```
+
+
 ## Khắc phục lỗi "Permission Denied" trên Web
 Mở terminal và chạy lệnh sau (có thể cần sử dụng sudo). Thay `gpm-login-private-server-docker` thành tên thư mục hiện tại
 ```
